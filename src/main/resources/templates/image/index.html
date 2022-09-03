@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="shared/layout">
+<head>
+  <title>Spring Boot Upload Image</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+  <a class="btn btn-primary" th:href="@{/create}">Create</a>
+  <p></p>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Image</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="obj : ${post}">
+      <td th:text=${obj.id}></td>
+      <td th:text=${obj.title}></td>
+      <td>
+        <img th:src = "@{'/upload/'+${obj.image}}" width="80" height="80"/>
+      </td>
+      <td>
+        <a th:href="@{/edit/{id}(id=${obj.id})}" class= "btn btn-info">Edit</a>
+        <a th:href="@{/delete/{id}(id=${obj.id})}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
